@@ -1,5 +1,15 @@
 public abstract class Product {
-    public abstract String getName();
+    private final String name;
+    private final Float price;
+    public Product(String name, Float price){
+        this.name = name;
+        this.price = price;
+    }
+    public String getName() {
+        return name;
+    }
 
-    public abstract Float getPrice();
+    public Float getPrice() {
+        return price;
+    }
 }
