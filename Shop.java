@@ -13,7 +13,7 @@ public class Shop {
         return products;
     }
 
-    public void addProductToShop(Product product, Integer quantity) {
+    public void addProductToShop(Product product, int quantity) {
         wareHouse.removeProductFromWareHouse(product, quantity);
         if (products.containsKey(product)) {
             products.replace(product, products.get(product) + quantity);
@@ -22,7 +22,7 @@ public class Shop {
         }
     }
 
-    public void removeProductFromShop(Product product, Integer quantity) {
+    public void removeProductFromShop(Product product, int quantity) {
         if(!products.containsKey(product) || quantity > getProductQuantityInShop(product)) {
             addProductToShop(product, quantity - getProductQuantityInShop(product));
         }
