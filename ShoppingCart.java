@@ -12,7 +12,7 @@ public class ShoppingCart {
     public  Map<Product, Integer> getProductsInCart() {
         return products;
     }
-    public void addProduct(Product product, Integer quantity) {
+    public void addProduct(Product product, int quantity) {
         shop.removeProductFromShop(product, quantity);
         if(products.containsKey(product)) {
             products.replace(product, products.get(product) + quantity);
@@ -20,7 +20,7 @@ public class ShoppingCart {
             products.put(product, quantity);
         }
     }
-    public void removeProduct(Product product, Integer quantity) {
+    public void removeProduct(Product product, int quantity) {
         shop.getProductsInShop().replace(product, shop.getProductsInShop().get(product) + quantity);
         products.replace(product, products.get(product) - quantity);
     }
@@ -32,8 +32,8 @@ public class ShoppingCart {
         products.clear();
     }
 
-    public Float getTotalShippingWeight() {
-        float weight = 0f;
+    public float getTotalShippingWeight() {
+        float weight = 0;
         for (Map.Entry<Product, Integer> pr : products.entrySet()) {
             if(pr.getKey() instanceof PhysicalProduct) {
                 weight += pr.getValue() * ((PhysicalProduct) pr.getKey()).getShippingWeight();
@@ -42,8 +42,8 @@ public class ShoppingCart {
         return weight;
     }
 
-    public Float getTotalDownloadSize() {
-        float MegaBytes = 0f;
+    public float getTotalDownloadSize() {
+        float MegaBytes = 0;
         for (Map.Entry<Product, Integer> pr : products.entrySet()) {
             if(pr.getKey() instanceof DigitalProduct) {
                 MegaBytes += pr.getValue() * ((DigitalProduct) pr.getKey()).getDownloadSize();
@@ -52,15 +52,15 @@ public class ShoppingCart {
         return MegaBytes;
     }
 
-    public Float getTotalPrice() {
-        float totalPrice = 0f;
+    public float getTotalPrice() {
+        float totalPrice = 0;
         for (Map.Entry<Product, Integer> pr : products.entrySet()) {
             totalPrice += pr.getKey().getPrice() * pr.getValue();
         }
         return totalPrice;
     }
 
-    public Integer getProductQuantityInCart(Product product) {
+    public int getProductQuantityInCart(Product product) {
         return products.get(product);
     }
 
