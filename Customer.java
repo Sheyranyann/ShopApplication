@@ -5,29 +5,29 @@ public class Customer {
 
     private final Map<Product, Integer> purchasedProducts;
     private ShoppingCart shoppingCart;
-    private Float money;
-    public Customer(Float money) {
+    private float money;
+    public Customer(float money) {
         this.money = money;
         purchasedProducts = new HashMap<>();
     }
     public void getShoppingCart(Shop shop) {
         shoppingCart =  new ShoppingCart(shop);
     }
-    public Float getMoney() {
+    public float getMoney() {
         return money;
     }
-    public void addMoney(Float money) {
+    public void addMoney(float money) {
         this.money += money;
     }
 
     public void purchase() {
         cartIsValid();
-        if (shoppingCart.getTotalPrice() > money) {
+        if (getTotalPrice() > money) {
             System.out.println("Not enough money to buy all products in the shopping cart");
             return;
         }
         Product key;
-        Integer value;
+        int value;
         for (Map.Entry<Product, Integer> productInCart : shoppingCart.getProductsInCart().entrySet()) {
             key = productInCart.getKey();
             value = productInCart.getValue();
@@ -49,41 +49,41 @@ public class Customer {
         }
     }
 
-    public void addProductToCart(Product product, Integer quantity) {
+    public void addProductToCart(Product product, int quantity) {
         cartIsValid();
         shoppingCart.addProduct(product, quantity);
         System.out.println(quantity + " " + product.getName() + "s are added to the shopping cart");
     }
-    public void removeProductFromCart(Product product, Integer quantity) {
+    public void removeProductFromCart(Product product, int quantity) {
         cartIsValid();
         shoppingCart.removeProduct(product, quantity);
         System.out.println(quantity + " " + product.getName() + "s are removed from the shopping cart");
 
     }
 
-    public Float getTotalPrice() {
+    public float getTotalPrice() {
         cartIsValid();
-        Float additionalPrice = 0f;
+        float additionalPrice = 0;
         if (getTotalShippingWeight() >= 10) {
             additionalPrice += 1500;
         }
-        if (getTotalDownloadSize() > 30f) {
+        if (getTotalDownloadSize() > 30) {
             additionalPrice += 500;
         }
         return shoppingCart.getTotalPrice() + additionalPrice ;
     }
 
-    public Integer getProductQuantityInCart(Product product) {
+    public int getProductQuantityInCart(Product product) {
         return shoppingCart.getProductQuantityInCart(product);
     }
 
 
-    public Float getTotalShippingWeight() {
+    public float getTotalShippingWeight() {
         cartIsValid();
         return shoppingCart.getTotalShippingWeight();
     }
 
-    public Float getTotalDownloadSize() {
+    public float getTotalDownloadSize() {
         cartIsValid();
         return shoppingCart.getTotalDownloadSize();
     }
