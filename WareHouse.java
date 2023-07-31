@@ -6,7 +6,7 @@ public class WareHouse {
     public WareHouse() {
         productCount = new HashMap<>();
     }
-    public void addProductToWareHouse(Product product, Integer quantity) {
+    public void addProductToWareHouse(Product product, int quantity) {
         if (productCount.containsKey(product)) {
             productCount.replace(product, productCount.get(product) + quantity);
         } else {
@@ -14,7 +14,7 @@ public class WareHouse {
         }
     }
 
-    public void removeProductFromWareHouse(Product product, Integer quantity) {
+    public void removeProductFromWareHouse(Product product, int quantity) {
         if (!productCount.containsKey(product)) {
             throw new ProductIsNotFoundException("Following product is not found in the Warehouse: ");
         }
