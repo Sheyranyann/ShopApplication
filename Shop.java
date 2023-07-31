@@ -38,12 +38,11 @@ public class Shop {
         throw new ProductIsNotFoundException("Following product is not found in the Shop: ");
     }
 
-    public Integer getProductQuantityInShop(Product product) {
+    public int getProductQuantityInShop(Product product) {
         if(!products.containsKey(product)) {
             return 0;
         }
         return products.get(product);
     }
-
 
 }
